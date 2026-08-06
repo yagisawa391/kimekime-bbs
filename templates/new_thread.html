@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block title %}スレッド作成 - {{ site_name }}{% endblock %}
+{% block content %}
+<section class="compose panel"><span class="eyebrow">CREATE THREAD</span><h1>新しいスレッドを作成</h1><p>名前やメールアドレスは不要です。</p><form method="post" enctype="multipart/form-data"><label>タイトル<input name="title" maxlength="120" value="{{ title or '' }}" placeholder="例：おすすめの映画教えて" required></label><label>最初の投稿<textarea name="body" maxlength="5000" placeholder="内容を入力してください" required>{{ body or '' }}</textarea></label><label class="file-btn wide">画像を添付<input type="file" name="image" accept="image/png,image/jpeg,image/gif,image/webp"></label><button class="primary big">スレッドを公開</button></form></section>
+{% endblock %}
