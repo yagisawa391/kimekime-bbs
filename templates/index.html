@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero"><div><span class="eyebrow">ANONYMOUS FORUM</span><h1>話題を立てて、すぐ話せる。</h1><p>登録不要。匿名ID、画像投稿、検索、人気順に対応。</p></div><a class="hero-btn" href="{{ url_for('new_thread') }}">スレッドを作る</a></section>
+<section class="panel list-panel">
+<div class="panel-head"><div><h2>スレッド一覧</h2><p>{{ threads|length }}件</p></div><form class="search" method="get"><input name="q" value="{{ query }}" placeholder="検索"><input type="hidden" name="sort" value="{{ sort }}"><button>検索</button></form></div>
+<div class="sort-tabs"><a class="{{ 'active' if sort=='updated' }}" href="?sort=updated&q={{ query }}">更新順</a><a class="{{ 'active' if sort=='new' }}" href="?sort=new&q={{ query }}">新着順</a><a class="{{ 'active' if sort=='popular' }}" href="?sort=popular&q={{ query }}">人気順</a></div>
+<div class="thread-grid">{% for t in threads %}<a class="thread-card" href="{{ url_for('thread', thread_id=t.id) }}"><div class="thread-accent"></div><div class="thread-main"><h3>{{ t.title }}</h3><p>最終更新 {{ t.bumped_at }}</p></div><div class="thread-meta"><span>💬 {{ t.post_count }}</span><span>👁 {{ t.views }}</span></div></a>{% else %}<div class="empty">まだスレッドがありません。</div>{% endfor %}</div>
+</section>
+{% endblock %}
